@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import './NumberFactsForm.scss';
 
 function NumberFactsForm(props) {
-    const { getRequestInformation } = props;
+    const { getNumberFact } = props;
 
     const numberRequest = useRef(null);
     const numberFactType = useRef(null);
@@ -17,7 +17,7 @@ function NumberFactsForm(props) {
             </select>
             <input type='button' 
                    value={'Get Number Fact'} 
-                   onClick={()=>{getRequestInformation(numberRequest.current.value, numberFactType.current.value)}}/>
+                   onClick={()=>{getNumberFact(numberRequest.current.value, numberFactType.current.value)}}/>
         </div>
     )
 }

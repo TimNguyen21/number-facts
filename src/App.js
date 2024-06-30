@@ -6,17 +6,28 @@ function App() {
 
   const [currentNumberFact, setCurrentNumberFact] = useState({id: null, numberFact: ''});
 
-  function getRequestInformation(number, numberType) {
-    console.log(numberType);
-    (number === '') ? console.log('random') : console.log(number);
+  function getNumberFact(number, numberType) {
+    const currentNumber = (number === '') ? 'random' : number;
+    const currentNumberType = numberType.toLowerCase();
+    const numberFactsAPILink = `http://numbersapi.com/${currentNumber}/${currentNumberType}?json`;
 
-    setCurrentNumberFact({id: Date.now(), numberFact: numberType});
+    fetchNumberFacts(numberFactsAPILink);
+  }
+
+  async function fetchNumberFacts(APILink) {
+    fetch(APILink)
+    .then(response => response.json())
+    .then(data => {setCurrentNumberFact({id: Date.now(), numberFact: data.text})})
+    .catch(err => {console.log(err)});
   }
 
   return (
     <div className="App">
-      <NumberFactsForm getRequestInformation={getRequestInformation}/>
-      <input type='button' value='Check Number Results State' onClick={() => {console.log(currentNumberFact)}} />
+      <NumberFactsForm getNumberFact={getNumberFact}/>
+      <br></br>
+      <br></br>
+      <br></br>
+      <label>{currentNumberFact['numberFact']}</label>
     </div>
   );
 }
