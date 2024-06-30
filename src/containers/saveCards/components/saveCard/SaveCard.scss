@@ -1,7 +1,7 @@
 .save-card {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    max-width: 600px;
     border: 1px dashed black;
     border-radius: 5px;
     padding: 10px;

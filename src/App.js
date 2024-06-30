@@ -38,21 +38,21 @@ function App() {
 
   return (
     <div className="App">
-      <section className='number-facts-form'>
-        <NumberFactsForm getNumberFact={getNumberFact}/>
-        <br></br>
-        <br></br>
-        <br></br>
-        <label>{currentNumberFact['numberFact']}</label>
-        
-        <input type='button' 
-               value='Save Number Fact' 
-               onClick={() => {updateAndSaveNumberFact()}} 
-               hidden={!hasNewNumberFact}/>
-      </section>
-      <section className='number-facts-saves'>
-        <b>Saved Number Facts</b>
-        <SaveCards />
+      <header>Number Facts</header>
+      <section className='number-facts'>
+        <section className='number-facts-form'>
+          <NumberFactsForm getNumberFact={getNumberFact}/>
+          <b>Results: </b>
+          <label>{currentNumberFact['numberFact'] ? currentNumberFact['numberFact'] : '?'}</label>
+          <input type='button' 
+                value='Save Number Fact' 
+                onClick={() => {updateAndSaveNumberFact()}} 
+                hidden={!hasNewNumberFact}/>
+        </section>
+        <section className='number-facts-saves'>
+          <label className='number-facts-saves-label'>Saved Number Facts</label>
+          <SaveCards />
+        </section>
       </section>
     </div>
   );

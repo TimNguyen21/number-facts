@@ -1,19 +1,58 @@
 .App {
-  display: flex;
-  margin: 50px;
+  font-family: "Playwrite DE Grund", cursive;
+  
+  header {
+    text-align: center;
+    font-size: 36px;
+    padding: 20px;
+    margin: 0;
+    background-color: #99cc99;
+    color: white;
+  }
 }
 
 .number-facts {
+  display: flex;
+  padding: 0 50px;
+
   &-form,
   &-saves {
     padding: 15px;
   }
 
   &-form {
-    width: 600px;
+    width: 400px;
   }
 
   &-saves {
     width: 100%;
+
+    &-label {
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .number-facts {
+    flex-direction: column;
+    padding: 0;
+    width: auto;
+
+    &-form {
+      width: fit-content;
+    }
+
+    &-saves {
+      width: auto;
+      border-top: 1px solid black;
+      padding: 10px 50px 0 40px;
+      
+      &-label {
+        display: flex;
+        justify-content: center;
+      }
+    }
   }
 }
