@@ -1,0 +1,16 @@
+.button {
+    height: 40px;
+
+    input[type='button'] {
+        height: 100%;
+        width: auto;
+        padding: 0 20px;
+        font-size: 16px;
+        background-color: #99cc99;
+        border: 1px solid #99ccff;
+        border-radius: 6px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+    }
+}

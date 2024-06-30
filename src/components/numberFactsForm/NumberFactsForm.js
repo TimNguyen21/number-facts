@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import Button from '../button/Button';
 import './NumberFactsForm.scss';
 
 function NumberFactsForm(props) {
@@ -17,9 +18,8 @@ function NumberFactsForm(props) {
                     <option>Year</option>
                 </select>
             </section>
-            <input type='button' 
-                   value={'Get Number Fact'} 
-                   onClick={()=>{getNumberFact(numberRequest.current.value, numberFactType.current.value)}}/>
+            <Button buttonText={'Get Number Fact'} 
+                    onClick={() => {getNumberFact(numberRequest.current.value, numberFactType.current.value)}}/>
         </div>
     )
 }
