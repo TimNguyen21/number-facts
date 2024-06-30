@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import NumberFactsForm from './components/numberFactsForm/NumberFactsForm';
+
+import SaveCard from './containers/saveCards/components/saveCard/SaveCard';
 import './App.scss';
 
 import { saveNumberFact } from './features/saveNumberFactSlice';
@@ -53,6 +55,7 @@ function App() {
       <section className='number-facts-saves'>
         <b>save results</b>
         {numberFactSaves.numberFactSaves}
+        <SaveCard />
       </section>
     </div>
   );
