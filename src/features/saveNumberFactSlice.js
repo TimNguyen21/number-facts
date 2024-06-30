@@ -10,7 +10,7 @@ export const saveNumberFactSlice = createSlice({
             state.numberFactSaves = state.numberFactSaves.concat(action.payload);
         },
         removeSavedNumberFact: (state, action) => {
-            state.numberFactSaves = state.numberFactSaves.filter(numberFactSave => numberFactSave.id !== action.payload);
+            state.numberFactSaves = state.numberFactSaves.filter(numberFactSave => JSON.parse(numberFactSave).id !== parseInt(action.payload));
         },
     },
 });
