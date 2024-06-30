@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import NumberFactsForm from './components/numberFactsForm/NumberFactsForm';
-
-import SaveCard from './containers/saveCards/components/saveCard/SaveCard';
+import SaveCards from './containers/saveCards/SaveCards'
 import './App.scss';
 
 import { saveNumberFact } from './features/saveNumberFactSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function App() {
-  const numberFactSaves = useSelector((state) => state.numberFactSave);
   const dispatch = useDispatch();
 
   const [currentNumberFact, setCurrentNumberFact] = useState({id: null, numberFact: ''});
@@ -53,9 +51,8 @@ function App() {
                hidden={!hasNewNumberFact}/>
       </section>
       <section className='number-facts-saves'>
-        <b>save results</b>
-        {numberFactSaves.numberFactSaves}
-        <SaveCard />
+        <b>Saved Number Facts</b>
+        <SaveCards />
       </section>
     </div>
   );
