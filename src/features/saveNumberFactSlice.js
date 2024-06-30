@@ -9,9 +9,12 @@ export const saveNumberFactSlice = createSlice({
         saveNumberFact: (state, action) => {
             state.numberFactSaves = state.numberFactSaves.concat(action.payload);
         },
+        removeSavedNumberFact: (state, action) => {
+            state.numberFactSaves = state.numberFactSaves.filter(numberFactSave => numberFactSave.id !== action.payload);
+        },
     },
 });
 
-export const { saveNumberFact } = saveNumberFactSlice.actions;
+export const { saveNumberFact, removeSavedNumberFact } = saveNumberFactSlice.actions;
 
 export default saveNumberFactSlice.reducer;

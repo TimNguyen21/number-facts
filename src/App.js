@@ -10,6 +10,7 @@ function App() {
   const dispatch = useDispatch();
 
   const [currentNumberFact, setCurrentNumberFact] = useState({id: null, numberFact: ''});
+  const [hasNewNumberFact, setHasNewNumberFact] = useState(false);
 
   function getNumberFact(number, numberType) {
     const currentNumber = (number === '') ? 'random' : number;
@@ -19,15 +20,19 @@ function App() {
     fetchNumberFacts(numberFactAPILink);
   }
 
-  function updateSavedNumberFact() {
+  function updateAndSaveNumberFact() {
     const numberFactData = JSON.stringify({id: currentNumberFact['id'], numberFact: currentNumberFact['numberFact']});
     dispatch(saveNumberFact(numberFactData));
+    setHasNewNumberFact(false);
   }
 
   async function fetchNumberFacts(APILink) {
     fetch(APILink)
       .then(response => response.json())
-      .then(data => {setCurrentNumberFact({id: Date.now(), numberFact: data.text})})
+      .then(data => {
+        setCurrentNumberFact({id: Date.now(), numberFact: data.text});
+        setHasNewNumberFact(true);
+      })
       .catch(err => {console.log(err)});
   }
 
@@ -39,11 +44,15 @@ function App() {
         <br></br>
         <br></br>
         <label>{currentNumberFact['numberFact']}</label>
-        <input type='button' value='Save Number Fact' onClick={() => {updateSavedNumberFact()}}/>
-        {numberFactSaves.numberFactSaves}
+        
+        <input type='button' 
+               value='Save Number Fact' 
+               onClick={() => {updateAndSaveNumberFact()}} 
+               hidden={!hasNewNumberFact}/>
       </section>
       <section className='number-facts-saves'>
-        save results
+        <b>save results</b>
+        {numberFactSaves.numberFactSaves}
       </section>
     </div>
   );
