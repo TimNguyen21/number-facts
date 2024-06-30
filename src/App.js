@@ -2,16 +2,26 @@ import { useState } from 'react';
 import NumberFactsForm from './components/numberFactsForm/NumberFactsForm';
 import './App.scss';
 
+import { saveNumberFact } from './features/saveNumberFactSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
 function App() {
+  const numberFactSaves = useSelector((state) => state.numberFactSave);
+  const dispatch = useDispatch();
 
   const [currentNumberFact, setCurrentNumberFact] = useState({id: null, numberFact: ''});
 
   function getNumberFact(number, numberType) {
     const currentNumber = (number === '') ? 'random' : number;
     const currentNumberType = numberType.toLowerCase();
-    const numberFactsAPILink = `http://numbersapi.com/${currentNumber}/${currentNumberType}?json`;
+    const numberFactAPILink = `http://numbersapi.com/${currentNumber}/${currentNumberType}?json`;
 
-    fetchNumberFacts(numberFactsAPILink);
+    fetchNumberFacts(numberFactAPILink);
+  }
+
+  function updateSavedNumberFact() {
+    const numberFactData = JSON.stringify({id: currentNumberFact['id'], numberFact: currentNumberFact['numberFact']});
+    dispatch(saveNumberFact(numberFactData));
   }
 
   async function fetchNumberFacts(APILink) {
@@ -29,7 +39,8 @@ function App() {
         <br></br>
         <br></br>
         <label>{currentNumberFact['numberFact']}</label>
-        <input type='button' value='Save Number Fact'/>
+        <input type='button' value='Save Number Fact' onClick={() => {updateSavedNumberFact()}}/>
+        {numberFactSaves.numberFactSaves}
       </section>
       <section className='number-facts-saves'>
         save results
