@@ -21,7 +21,7 @@ function SaveCards() {
 
     return (
         <div className='save-cards' >
-            {renderNumberFactSaves()}
+            {(numberFactSaves.length > 0) ? renderNumberFactSaves() : 'Currently No Number Fact Saves'}
         </div>
     )
 }

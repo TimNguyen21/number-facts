@@ -9,12 +9,14 @@ function NumberFactsForm(props) {
 
     return (
         <div className={'number-facts-form'}>
-            <input type='number' placeholder='Enter Number' ref={numberRequest}/>
-            <select id='number-fact-type' ref={numberFactType}>
-                <option>Trivia</option>
-                <option>Math</option>
-                <option>Year</option>
-            </select>
+            <section className='number-facts-form-inputs'>
+                <input type='number' placeholder='Enter Number' ref={numberRequest}/>
+                <select id='number-fact-type' ref={numberFactType}>
+                    <option>Trivia</option>
+                    <option>Math</option>
+                    <option>Year</option>
+                </select>
+            </section>
             <input type='button' 
                    value={'Get Number Fact'} 
                    onClick={()=>{getNumberFact(numberRequest.current.value, numberFactType.current.value)}}/>
