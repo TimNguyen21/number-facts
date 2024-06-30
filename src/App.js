@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import NumberFactsForm from './components/numberFactsForm/NumberFactsForm';
-import SaveCards from './containers/saveCards/SaveCards'
+import SaveCards from './containers/saveCards/SaveCards';
+import Button from './components/button/Button';
 import './App.scss';
 
 import { saveNumberFact } from './features/saveNumberFactSlice';
@@ -40,15 +41,18 @@ function App() {
     <div className="App">
       <header>Number Facts</header>
       <section className='number-facts'>
-        <section className='number-facts-form'>
+        <div className='number-facts-form'>
           <NumberFactsForm getNumberFact={getNumberFact}/>
-          <b>Results: </b>
-          <label>{currentNumberFact['numberFact'] ? currentNumberFact['numberFact'] : '?'}</label>
-          <input type='button' 
-                value='Save Number Fact' 
-                onClick={() => {updateAndSaveNumberFact()}} 
-                hidden={!hasNewNumberFact}/>
-        </section>
+          <div className='number-facts-results'>
+            <b>Results: </b>
+            <span>{currentNumberFact['numberFact'] ? currentNumberFact['numberFact'] : '?'}</span>
+          </div>
+          <div className='number-facts-submit-button'>
+            <Button buttonText={'Save Number Fact'} 
+                      onClick={() => {updateAndSaveNumberFact()}}
+                      isHidden={!hasNewNumberFact}/>
+          </div>
+        </div>
         <section className='number-facts-saves'>
           <label className='number-facts-saves-label'>Saved Number Facts</label>
           <SaveCards />
